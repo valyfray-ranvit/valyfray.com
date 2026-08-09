@@ -1,0 +1,16 @@
+/*body{ background: red !important; }*/
+
+:root{
+	--royal: #2a3ed8;
+	--royal-dim: #1c2a8f;
+	--black: #05060c;
+	--panel: #0a0d1c;
+	--text: #c9d0ff;
+}
+
+body{
+	margin: 0;
+	background: var(--black);
+	color: var(--text);
+	font-family: monospace;
+}
