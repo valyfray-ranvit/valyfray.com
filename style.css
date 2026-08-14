@@ -1,5 +1,12 @@
 /*body{ background: red !important; }*/
 
+@font-face {
+	font-family: 'TerminessNerdFontMono-Regular';
+	src: url('/assets/text/TerminessNerdFontMono-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
 :root{
 	--royal: #2a3ed8;
 	--royal-dim: #1c2a8f;
@@ -12,5 +19,63 @@ body{
 	margin: 0;
 	background: var(--black);
 	color: var(--text);
-	font-family: monospace;
+	font-family: 'TerminessNerdFontMono-Regular', sans-serif;
 }
+
+.entry{
+	border: 2px solid var(--royal-dim);
+}
+
+.entry-head{
+	margin: 4px;
+}
+
+
+.entry-body{
+	margin: 6px;
+}
+
+.window{
+	background: var(--panel);
+	border: 2px solid var(--royal);
+	box-shadow: 4px 4px 0 0 var(--royal-dim);
+}
+
+.titlebar{
+	background: var(--royal);
+	padding: 8px 12px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.dots{ display: flex; gap: 4px;}
+
+.dots span{
+	width: 10px;
+	height: 10px;
+	background: #fff;
+	display: inline-block;
+}
+
+.content{
+	padding: 14px;
+}
+
+.page{
+	display: grid;
+	grid-template-columns: 270px 1fr 200px;
+	gap: 20px;
+	padding: 24px;
+}
+
+.left-stack{
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.banner-wrap{
+	grid-column: 1/-1;
+}
+
+h1{ text-shadow: 0 0 20px var(--royal), 3px 3px 0 var(--royal-dim); }
