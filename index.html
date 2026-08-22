@@ -22,12 +22,53 @@
 						<span>.//now-playing</span>
 						<div class="dots"><span></span><span></span><span></span></div>
 					</div>
-					<div class="content player">
+					<div class="content">
 						<div class="screen">
-							TRACK 01 / QUEUE 13
+							
 						</div>
 						<div class="embed-slot">
-							<iframe width="70%" height="70%" src="https://www.youtube.com/embed/videoseries?si=UJThcLza_9C3pPFA&amp;list=PLOfBaOx2cchXoZ5rGv5i8OrhnyWR6CQhk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" style="border:none;" allowfullscreen></iframe>
+							<div id="player"></div>
+							<img class="thumbnail" src="" alt="" />
+							<script src="https://www.youtube.com/iframe_api"></script>
+							<script>
+								let player;
+								function onYouTubeIframeAPIReady() {
+									console.log('API ready, creating player...');
+									player = new YT.Player('player', {
+										//height: '200',
+										//width: '100%',
+										playerVars: {
+											origin: window.location.origin,
+											listType: 'playlist',
+											list: 'PLOfBaOx2cchXoZ5rGv5i8OrhnyWR6CQhk'
+										},
+										events: {
+											'onReady': onPlayerReady,
+											'onStateChange': onPlayerStateChange
+										}
+									});
+								}
+								function onPlayerReady(event){
+									console.log('player ready');
+								}
+								function onPlayerStateChange(event) {
+									const bars = document.querySelector('.bars');
+									if (event.data === YT.PlayerState.PLAYING) {
+										bars.classList.add('playing');
+										const data = player.getVideoData();
+										document.querySelector('.screen').textContent = player.getVideoData().title;
+										document.querySelector('.thumbnail').src =`https://img.youtube.com/vi/${data.video_id}/mqdefault.jpg`;
+									} else {
+										bars.classList.remove('playing');
+									}
+								}
+							</script>
+						</div> 
+						<div class="player-controls">
+							<button class="ctrl-btn" onclick="player.previousVideo()">◀◀</button>
+							<button class="ctrl-btn" onclick="player.playVideo()" >▶</button>
+							<button class="ctrl-btn" onclick="player.pauseVideo()">❚❚</button>
+							<button class="ctrl-btn" onclick="player.nextVideo()">▶▶</button>
 						</div>
 						<div class="bars">
 							<span></span><span></span><span></span><span></span><span></span>
@@ -41,21 +82,29 @@
 					</div>
 					<div class="content hooked-list">
 						<div class="hooked-item">
-							<h3><span class="hooked-tag">WATCHING</span></h3>
+							<h4><span class="hooked-tag">WATCHING</span></h4>
 							<p><span class="hooked-title"><ul>
-									<li>show</li>
-									<li>show</li>
-									<li>show</li>
+									<li><a href="https://youtube.com/playlist?list=PLmcEDtP852REwU1e-Afhi9ujRKKhQPknl&si=lhRazo9hUZZ9bd8-">Project:863</a></li>
+									<li><a href="https://kamenrider.fandom.com/wiki/Kamen_Rider_Build">Kamen Rider Build</a></li>
+									<li><a href="https://powerrangers.fandom.com/wiki/Zyuden_Sentai_Kyoryuger">Zyuden Sentai Kyoryuger</a></li>
 								</ul></span></p>
 						</div>
 						<div class="hooked-item">
-							<h3><span class="hooked-tag">Listening</span></h3>
+							<h4><span class="hooked-tag">Listening</span></h4>
 							<p><span class="hooked-title"><ul>
-									<li>song</li>
+									<li><a href="https://youtu.be/SU5WVrzB82E?si=kzMJhEYAn_qMILlC">By God's Mercy</a></li>
+									<li><a href="https://youtu.be/n89SKAymNfA?si=TXtHPaxKWDcpWygd">Nandemonaiya</a></li>
+									<li><a href="https://youtu.be/wNjvuRZtQeI?si=SrsHpnWgpA6Zl9nf">Inferno</a></li>
 								</ul></span></p>
 						</div>
 						<div class="hooked-item">
-							<h3><span class="hooked-tag">Reading</span></h3>
+							<h4><span class="hooked-tag">Reading</span></h4>
+							<p><span class="hooked-title"><ul>
+									<li>book</li>
+								</ul></span></p>
+						</div>
+						<div class="hooked-item">
+							<h4><span class="hooked-tag">Playing</span></h4>
 							<p><span class="hooked-title"><ul>
 									<li>book</li>
 								</ul></span></p>

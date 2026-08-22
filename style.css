@@ -68,7 +68,7 @@ body{
 
 .page{
 	display: grid;
-	grid-template-columns: 270px 1fr 200px;
+	grid-template-columns: 280px 1fr 200px;
 	gap: 20px;
 	padding: 24px;
 }
@@ -96,7 +96,7 @@ h1{ text-shadow: 0 0 20px var(--royal), 3px 3px 0 var(--royal-dim); }
 	align-items: center;
 	padding: 8px 4px;
 	border-bottom: 1px solid var(--royal-dim);
-	font-size: 20px;
+	font-size: 18px;
 }
 
 .hooked-tag{
@@ -123,12 +123,19 @@ h1{ text-shadow: 0 0 20px var(--royal), 3px 3px 0 var(--royal-dim); }
 	gap: 12px;
 }
 
+#player{
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	position: absolute;
+}
+
 .screen{
 	background: var(--black);
 	border: 1px solid var(--royal-dim);
-	padding: 8px;
+	padding: 20px;
 	font-size: 20px;
-	color: var(--amber);
+	color: var(--text);
 }
 
 .embed-slot{
@@ -141,6 +148,18 @@ h1{ text-shadow: 0 0 20px var(--royal), 3px 3px 0 var(--royal-dim); }
 	font-size: 21px;
 	color: var(--royal-glow);
 }
+
+.thumbnail{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 1px solid var(--royal-dim);
+  filter: saturate(1.1) contrast(1.05);
+}
+
+.bars span{ animation-play-state: paused; }
+.bars.playing span{ animation-play-state: running; }
+
 
 .bars{
   display: flex;
@@ -165,4 +184,28 @@ h1{ text-shadow: 0 0 20px var(--royal), 3px 3px 0 var(--royal-dim); }
 @keyframes eq{
   0%, 100% { transform: scaleY(0.4); }
   50%      { transform: scaleY(1); }
+}
+
+
+.player-controls{
+	justify-content: center;
+	display: flex;
+	gap: 8px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.ctrl-btn{
+	background: var(--royal-dim);
+	color: var(--text);
+	border: 1px solid var(--royal);
+	font-family: monospace;
+	font-size: 16px;
+	padding: 6px 14px;
+	cursor: pointer;
+}
+
+.ctrl-btn:hover{
+	background: var(--royal);
+	color: #fff;
 }
